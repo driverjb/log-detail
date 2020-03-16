@@ -1,6 +1,6 @@
 {
   "name": "log-detail",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "My own custom logging solution that mimics syslog format lightly and allows for plenty of data points",
   "main": "build/index.js",
   "scripts": {
@@ -12,9 +12,14 @@
   },
   "keywords": [
     "log",
-    "verbose"
+    "verbose",
+    "syslog",
+    "details"
   ],
-  "author": "Joel Driver",
+  "author": {
+    "name": "Joel Driver",
+    "email": "driverjb09@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/driverjb09/log-detail/issues"
