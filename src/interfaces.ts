@@ -3,6 +3,6 @@ export interface Config {
   enabled?: boolean;
   timestampFormat?: string;
   level?: Level;
-  color?: boolean;
+  //color?: boolean;
   appName?: string;
 }
