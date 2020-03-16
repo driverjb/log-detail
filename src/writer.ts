@@ -36,7 +36,7 @@ export class Writer {
   }
   private write(level: Level, message: string, data?: DataPoints, uuid?: string): boolean {
     let l = Writer.levelToNumber(level);
-    if (l >= this.level) {
+    if (l >= this.level && configuration.enabled) {
       let time = moment().format(configuration.timestampFormat);
       let d = this.prepareData(data, uuid);
       console.error(
