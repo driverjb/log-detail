@@ -45,23 +45,68 @@ export class Writer {
       return true;
     } else return false;
   }
+  /**
+   * Write a log event of level trace
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public trace(message: string, data?: DataPoints, uuid?: string): boolean {
     return this.write('trace', message, data, uuid);
   }
+  /**
+   * Write a log event of level debug
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public debug(message: string, data?: DataPoints, uuid?: string) {
     return this.write('debug', message, data, uuid);
   }
+  /**
+   * Write a log event of level info
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public info(message: string, data?: DataPoints, uuid?: string) {
     return this.write('info', message, data, uuid);
   }
+  /**
+   * Write a log event of level warn
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public warn(message: string, data?: DataPoints, uuid?: string) {
     return this.write('warn', message, data, uuid);
   }
+  /**
+   * Write a log event of level error
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public error(message: string, data?: DataPoints, uuid?: string) {
     return this.write('error', message, data, uuid);
   }
+  /**
+   * Write a log event of level fatal
+   * @param message
+   * @param data
+   * @param uuid
+   */
   public fatal(message: string, data?: DataPoints, uuid?: string) {
     return this.write('fatal', message, data, uuid);
+  }
+  /**
+   * Create a new Writer instance based off of the current namespace
+   * @param message
+   * @param data
+   * @param uuid
+   */
+  public spawnSubWriter(namespace: string) {
+    return new Writer(`${this.namespace}:${namespace}`);
   }
   private static levelToNumber(level: Level) {
     switch (level) {
