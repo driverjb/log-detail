@@ -4,7 +4,7 @@
   "description": "My own custom logging solution that mimics syslog format lightly and allows for plenty of data points",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --project tsconfig.json"
   },
   "repository": {
     "type": "git",
