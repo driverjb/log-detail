@@ -1,5 +1,5 @@
 export * from './writer';
-export * from './configuration';
+export * from './interfaces';
 import { Config } from './interfaces';
 import { configuration } from './configuration';
 
