@@ -29,15 +29,18 @@ export class Writer {
     }
     let o = '';
     for (let k in data) {
-      let d = typeof data[k] == 'object' ? (data[k] ? JSON.stringify(data[k]) : data[k]) : data[k];
-      if (typeof d == 'function') {
-        let name = d
-          .toString()
-          .split('(')[0]
-          .split(' ')[1];
-        d = `[Function: ${name ? name : 'Anonymous'}]`;
+      if (data[k] !== undefined) {
+        let d =
+          typeof data[k] == 'object' ? (data[k] ? JSON.stringify(data[k]) : data[k]) : data[k];
+        if (typeof d == 'function') {
+          let name = d
+            .toString()
+            .split('(')[0]
+            .split(' ')[1];
+          d = `[Function: ${name ? name : 'Anonymous'}]`;
+        }
+        o += o === '' ? `${color.dataKey(k)}='${d}'` : ` ${color.dataKey(k)}='${d}'`;
       }
-      o += o === '' ? `${color.dataKey(k)}='${d}'` : ` ${k}='${d}'`;
     }
     return `${this.leftBracket}${o}${this.rightBracket}`;
   }
