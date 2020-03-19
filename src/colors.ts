@@ -43,8 +43,8 @@ function rawColor(target: string, color: string) {
 
 export function getRandomColor() {
   if (mode == 'none') return '';
-  if (mode == 'basic') return `\u001b[${Math.floor(Math.random() * 197 + 32)};1m`;
-  else return `\u001b[38;5;155m`;
+  if (mode == 'full') return `\u001b[${Math.floor(Math.random() * 197 + 32)};1m`;
+  else return `\u001b[${Math.floor(Math.random() * 6 + 31)}m`;
 }
 
 export function level(level: Level) {
