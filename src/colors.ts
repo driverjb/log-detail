@@ -53,16 +53,22 @@ export function level(level: Level) {
   switch (level) {
     case 'trace':
       c = full ? FullColor.blue : BasicColor.blue;
+      break;
     case 'debug':
       c = full ? FullColor.cyan : BasicColor.cyan;
+      break;
     case 'info':
       c = full ? FullColor.green : BasicColor.green;
+      break;
     case 'warn':
       c = full ? FullColor.yellow : BasicColor.yellow;
+      break;
     case 'error':
       c = full ? FullColor.orange : BasicColor.red;
+      break;
     case 'fatal':
       c = full ? FullColor.red : BasicColor.magenta;
+      break;
   }
   return color(level, c);
 }
