@@ -6,14 +6,14 @@ var mode = 'none';
 const reset = '\u001b[0m';
 
 enum BasicColor {
-  red = '\u001b[31;1m',
-  green = '\u001b[32;1m',
-  yellow = '\u001b[33;1m',
+  red = '\u001b[31m',
+  green = '\u001b[32m',
+  yellow = '\u001b[33m',
   blue = '\u001b[34;1m',
-  magenta = '\u001b[35;1m',
-  cyan = '\u001b[36;1m',
-  black = '\u001b[30;1m',
-  white = '\u001b[37;1m'
+  magenta = '\u001b[35m',
+  cyan = '\u001b[36m',
+  black = '\u001b[30m',
+  white = '\u001b[37m'
 }
 enum FullColor {
   red = '\u001b[38;5;160m',
