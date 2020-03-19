@@ -9,7 +9,7 @@ enum BasicColor {
   red = '\u001b[31m',
   green = '\u001b[32m',
   yellow = '\u001b[33m',
-  blue = '\u001b[34;1m',
+  blue = '\u001b[34m',
   magenta = '\u001b[35m',
   cyan = '\u001b[36m',
   black = '\u001b[30m',
@@ -28,7 +28,7 @@ enum FullColor {
   olive = '\u001b[38;5;100m',
   white = '\u001b[38;5;255m',
   maroon = '\u001b[38;5;124m',
-  mint = '\u001b[38;5;155m'
+  mint = '\u001b[38;5;157m'
 }
 
 function color(target: string, color: BasicColor | FullColor) {
@@ -74,7 +74,7 @@ export function level(level: Level) {
 }
 
 export function timestamp(timestamp: string) {
-  return mode == 'full' ? color(timestamp, FullColor.maroon) : color(timestamp, BasicColor.red);
+  return mode == 'full' ? color(timestamp, FullColor.brown) : color(timestamp, BasicColor.red);
 }
 
 export function host(host: string) {
