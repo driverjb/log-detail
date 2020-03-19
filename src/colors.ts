@@ -5,6 +5,28 @@ export type Mode = 'none' | 'basic' | 'full';
 var mode = 'none';
 const reset = '\u001b[0m';
 
+const fullRandom = [
+  33,
+  34,
+  39,
+  42,
+  48,
+  51,
+  57,
+  63,
+  80,
+  88,
+  93,
+  95,
+  105,
+  120,
+  129,
+  160,
+  167,
+  184,
+  200
+];
+
 enum BasicColor {
   red = '\u001b[31m',
   green = '\u001b[32m',
@@ -43,7 +65,7 @@ function rawColor(target: string, color: string) {
 
 export function getRandomColor() {
   if (mode == 'none') return '';
-  if (mode == 'full') return `\u001b[38;5;${Math.floor(Math.random() * 197 + 32)}m`;
+  if (mode == 'full') return `\u001b[38;5;${fullRandom[Math.floor(Math.random() * 19)]}m`;
   else return `\u001b[${Math.floor(Math.random() * 6 + 31)}m`;
 }
 
