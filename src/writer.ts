@@ -1,22 +1,29 @@
 import { Level } from './interfaces';
 import moment from 'moment-timezone';
 import { configuration } from './configuration';
+import * as color from './colors';
 
 interface DataPoints {
   [key: string]: any;
 }
 
 export class Writer {
+  private leftBracket: string;
+  private rightBracket: string;
+  private namespaceColor: string;
   private namespace: string;
   private level: number;
   constructor(namespace: string) {
-    this.namespace = namespace;
+    this.namespaceColor = color.getRandomColor();
+    this.namespace = color.namespace(namespace, this.namespaceColor);
+    this.leftBracket = color.bracket('[');
+    this.rightBracket = color.bracket(']');
     this.level = Writer.levelToNumber(configuration.level);
   }
   private prepareData(data?: DataPoints, uuid?: string) {
     if (!data) {
       if (uuid) data = { uuid: uuid };
-      else return '[]';
+      else return `${this.leftBracket}${this.rightBracket}`;
     } else {
       if (uuid) Object.assign(data, { uuid: uuid });
     }
@@ -30,17 +37,19 @@ export class Writer {
           .split(' ')[1];
         d = `[Function: ${name ? name : 'Anonymous'}]`;
       }
-      o += o === '' ? `${k}='${d}'` : ` ${k}='${d}'`;
+      o += o === '' ? `${color.dataKey(k)}='${d}'` : ` ${k}='${d}'`;
     }
-    return `[${o}]`;
+    return `${this.leftBracket}${o}${this.rightBracket}`;
   }
   private write(level: Level, message: string, data?: DataPoints, uuid?: string): boolean {
     let l = Writer.levelToNumber(level);
     if (l >= this.level && configuration.enabled) {
-      let time = moment().format(configuration.timestampFormat);
+      let time = color.timestamp(moment().format(configuration.timestampFormat));
       let d = this.prepareData(data, uuid);
+      let colorLevel = color.level(level);
+      message = color.message(message);
       console.error(
-        `${time} ${configuration.hostname} ${configuration.appName}[${configuration.pid}]: ${level} ${this.namespace} ${d} ${message}`
+        `${time} ${configuration.hostname} ${configuration.appName}[${configuration.pid}]: ${colorLevel} ${this.namespace} ${d} ${message}`
       );
       return true;
     } else return false;

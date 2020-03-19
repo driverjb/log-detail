@@ -9,4 +9,5 @@ export interface Config {
   //color?: boolean;
   /** Name of the application being logged */
   appName?: string;
+  color?: 'full' | 'basic' | 'none';
 }
