@@ -1,5 +1,4 @@
 import { Level } from './interfaces';
-import moment from 'moment-timezone';
 import { configuration } from './configuration';
 import * as color from './colors';
 
@@ -44,10 +43,32 @@ export class Writer {
     }
     return `${this.leftBracket}${o}${this.rightBracket}`;
   }
+  private generateTimestamp() {
+    var dt = new Date();
+    let year = dt.getFullYear().toString();
+    let month = (dt.getMonth() + 1).toString().padStart(2, '0');
+    let day = dt
+      .getDate()
+      .toString()
+      .padStart(2, '0');
+    let hours = dt
+      .getHours()
+      .toString()
+      .padStart(2, '0');
+    let minutes = dt
+      .getMinutes()
+      .toString()
+      .padStart(2, '0');
+    let seconds = dt
+      .getSeconds()
+      .toString()
+      .padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
   private write(level: Level, message: string, data?: DataPoints, uuid?: string): boolean {
     let l = Writer.levelToNumber(level);
     if (l >= this.level && configuration.enabled) {
-      let time = color.timestamp(moment().format(configuration.timestampFormat));
+      let time = color.timestamp(this.generateTimestamp());
       let d = this.prepareData(data, uuid);
       let colorLevel = color.level(level);
       message = color.message(message);
