@@ -14,7 +14,7 @@ export class Writer {
   private level: number;
   constructor(namespace: string) {
     this.namespaceColor = color.getRandomColor();
-    this.namespace = color.namespace(namespace, this.namespaceColor);
+    this.namespace = namespace; //color.namespace(namespace, this.namespaceColor);
     this.leftBracket = color.bracket('[');
     this.rightBracket = color.bracket(']');
     this.level = Writer.levelToNumber(configuration.level);
@@ -32,10 +32,7 @@ export class Writer {
         let d =
           typeof data[k] == 'object' ? (data[k] ? JSON.stringify(data[k]) : data[k]) : data[k];
         if (typeof d == 'function') {
-          let name = d
-            .toString()
-            .split('(')[0]
-            .split(' ')[1];
+          let name = d.toString().split('(')[0].split(' ')[1];
           d = `[Function: ${name ? name : 'Anonymous'}]`;
         }
         o += o === '' ? `${color.dataKey(k)}='${d}'` : ` ${color.dataKey(k)}='${d}'`;
@@ -47,22 +44,10 @@ export class Writer {
     var dt = new Date();
     let year = dt.getFullYear().toString();
     let month = (dt.getMonth() + 1).toString().padStart(2, '0');
-    let day = dt
-      .getDate()
-      .toString()
-      .padStart(2, '0');
-    let hours = dt
-      .getHours()
-      .toString()
-      .padStart(2, '0');
-    let minutes = dt
-      .getMinutes()
-      .toString()
-      .padStart(2, '0');
-    let seconds = dt
-      .getSeconds()
-      .toString()
-      .padStart(2, '0');
+    let day = dt.getDate().toString().padStart(2, '0');
+    let hours = dt.getHours().toString().padStart(2, '0');
+    let minutes = dt.getMinutes().toString().padStart(2, '0');
+    let seconds = dt.getSeconds().toString().padStart(2, '0');
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
   private write(level: Level, message: string, data?: DataPoints, uuid?: string): boolean {
@@ -73,7 +58,9 @@ export class Writer {
       let colorLevel = color.level(level);
       message = color.message(message);
       console.error(
-        `${time} ${configuration.hostname} ${configuration.appName}[${configuration.pid}]: ${colorLevel} ${this.namespace} ${d} ${message}`
+        `${time} ${configuration.hostname} ${configuration.appName}[${
+          configuration.pid
+        }]: ${colorLevel} ${color.namespace(this.namespace, this.namespaceColor)} ${d} ${message}`
       );
       return true;
     } else return false;
