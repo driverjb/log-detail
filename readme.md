@@ -16,7 +16,7 @@ let config = new Configuration({
 
 let userLog = new Writer('api:user', config);
 let groupLog = new Writer('api:group', config);
-let specificGroup = groupLog.spawnSubWriter('SomeGroup', config); //if no config provided, the parent's config will be used
+let specificGroup = groupLog.spawnSubWriter('MyGroup', config); //if no config provided, the parent's config will be used
 
 userLog.info('New user created', { username: 'Joel' });
 groupLog.info('New group created', { groupname: 'MyGroup' });
