@@ -5,18 +5,18 @@ There are many great logging solutions available, but many of them are either a 
 # Example
 
 ```javascript
-const { setConfiguration, Writer } = require('./build');
+const { Configuration, Writer } = require('log-detail');
 
-setConfiguration({
+let config = new Configuration({
   appName: 'MyApp',
   enabled: true,
-  level: 'info'
-  color: 'none' //options are 'none', 'basic', 'full'
+  level: 'info',
+  color: true,
 });
 
-let userLog = new Writer('api:user');
-let groupLog = new Writer('api:group');
-let specificGroup = groupLog.spawnSubWriter('MyGroup');
+let userLog = new Writer('api:user', config);
+let groupLog = new Writer('api:group', config);
+let specificGroup = groupLog.spawnSubWriter('SomeGroup', config); //if no config provided, the parent's config will be used
 
 userLog.info('New user created', { username: 'Joel' });
 groupLog.info('New group created', { groupname: 'MyGroup' });
