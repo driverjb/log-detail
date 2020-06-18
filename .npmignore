@@ -1,5 +1,6 @@
-src
 .prettierrc
 .gitignore
-tsconfig.json
+docs-code
+node_modules
 package-lock.json
+yarn.lock
