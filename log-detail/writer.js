@@ -32,6 +32,10 @@ Writer.prototype.generateEvent = function (level, message, data, uuid) {
   return false;
 };
 
+Writer.prototype.spawnSubWriter = function (namespaceExtension, config) {
+  return new Writer(`${this.namespace}:${namespaceExtension}`, config ? config : this.config);
+};
+
 /**
  * Write a log event at the trace level
  * @param {string} message - the message to print for the log event
