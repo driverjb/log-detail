@@ -1,6 +1,6 @@
 {
   "name": "log-detail",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "My own custom logging solution that mimics syslog format lightly and allows for plenty of data points",
   "main": "build/index.js",
   "scripts": {

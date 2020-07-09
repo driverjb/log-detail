@@ -51,9 +51,10 @@ describe('Log Detail Module', function () {
         w.warn('Warn message', null, uuid),
         w.error('Error message', { error: e, func: fanon }),
         w.fatal('Fatal message'),
+        w.info('Empty object', {}, uuid),
       ];
       results = results.filter((r) => r);
-      assert.equal(results.length, 6);
+      assert.equal(results.length, 7);
     });
     it('Should only output log events info level and up', function () {
       let w = new Writer('test:1');

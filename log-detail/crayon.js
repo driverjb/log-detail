@@ -53,7 +53,7 @@ Crayon.prepareData = function (data, uuid) {
   let lB = Crayon.COLORS.FULL.indigo('[');
   let rB = Crayon.COLORS.FULL.indigo(']');
   let colorKey = Crayon.COLORS.FULL.yellow;
-  if (!data) {
+  if (!data || Object.keys(data).length === 0) {
     if (uuid) data = { uuid: uuid };
     else return `${lB}${rB}`;
   }
