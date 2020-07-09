@@ -56,7 +56,7 @@ Crayon.prepareData = function (data, uuid) {
   if (!data || Object.keys(data).length === 0) {
     if (uuid) data = { uuid: uuid };
     else return `${lB}${rB}`;
-  }
+  } else data.uuid = uuid;
   let o = '';
   for (let k in data) {
     if (data[k] !== undefined) {
@@ -76,10 +76,10 @@ Crayon.prepareData = function (data, uuid) {
 };
 
 Crayon.prepareDataNoColor = function (data, uuid) {
-  if (!data) {
+  if (!data || Object.keys(data).length === 0) {
     if (uuid) data = { uuid: uuid };
-    else return `[]`;
-  }
+    else return `${lB}${rB}`;
+  } else data.uuid = uuid;
   let o = '';
   for (let k in data) {
     if (data[k] !== undefined) {
