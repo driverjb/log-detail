@@ -2,6 +2,8 @@ const Configuration = require('./configuration');
 const LogEvent = require('./logEvent');
 const Crayon = require('./crayon');
 
+var default_config = new Configuration();
+
 /**
  * @class
  * @constructor
@@ -10,7 +12,7 @@ const Crayon = require('./crayon');
  */
 function Writer(namespace, config) {
   this.namespace = namespace || 'default';
-  this.config = config || new Configuration();
+  this.config = config || default_config;
   this.crayon = new Crayon();
 }
 
@@ -91,6 +93,15 @@ Writer.prototype.error = function (message, data, uuid) {
  */
 Writer.prototype.fatal = function (message, data, uuid) {
   return this.generateEvent('fatal', message, data, uuid);
+};
+
+/**
+ * Set the default configuration for Writers created without passing Configuration object.
+ * This can be used instead of creating a LogSpawner
+ * @param {Configuration} config
+ */
+Writer.setDefaultConfiguration = function (config) {
+  default_config = config;
 };
 
 module.exports = Writer;
