@@ -28,7 +28,7 @@ Writer.prototype.generateEvent = function (level, message, data, uuid) {
     });
     if (this.config.color) e = this.crayon.colorLogEvent(e);
     else e.data = Crayon.prepareDataNoColor(e.data, e.uuid);
-    console.log(e.toString());
+    console.error(e.toString());
     return true;
   }
   return false;
