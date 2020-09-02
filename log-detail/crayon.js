@@ -1,9 +1,4 @@
 /**
- * The strings that are allowed to be color modes
- * @typedef {('none'|'basic'|'full')} ColorMode
- */
-
-/**
  * The strings that are allowed to be log levels
  * @typedef {('trace'|'debug'|'info'|'warn'|'error'|'fatal')} LogLevel
  */
@@ -78,7 +73,7 @@ Crayon.prepareData = function (data, uuid) {
 Crayon.prepareDataNoColor = function (data, uuid) {
   if (!data || Object.keys(data).length === 0) {
     if (uuid) data = { uuid: uuid };
-    else return `${lB}${rB}`;
+    else return `[]`;
   } else data.uuid = uuid;
   let o = '';
   for (let k in data) {
